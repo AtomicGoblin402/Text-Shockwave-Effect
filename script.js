@@ -256,7 +256,8 @@ function glitchShockwave(event, power = 1) {
   const maxOffsets = [];
   // Set max shockwave radius (in px) for full power
   const maxRadius = window.innerWidth > window.innerHeight ? window.innerWidth * 0.6 : window.innerHeight * 0.6;
-  const shockwaveRadius = 60 + (maxRadius - 60) * Math.min(power, 1); // min 60px, max ~screen size
+  const effectivePower = overcharge ? power : Math.min(power, 0.75);
+  const shockwaveRadius = 60 + (maxRadius - 60) * effectivePower; // min 60px, max ~screen size
   for (let i = 0; i < spans.length; i++) {
     const rect = spans[i].getBoundingClientRect();
     const letterX = rect.left + rect.width / 2;
